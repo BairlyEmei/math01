@@ -274,7 +274,7 @@ if __name__ == "__main__":
     if option=='修正标定':
         df=pd.read_excel('Q1_已修正标定表.xlsx', sheet_name='已修正标定表')
         # 绘制修正标定图
-        plt.scatter(df['Height/mm'], df['修正标定值/L']/1000, label='修正标定值/L', color='gray',alpha=0.6,marker='+', s=20)
+        plt.scatter(df['Height/mm'], df['修正标定值/L'], label='修正标定值/L', color='gray',alpha=0.6,marker='+', s=20)
         plt.xlabel('油位高度(mm)')
         plt.ylabel('修正标定值/L')
         plt.title('修正标定图')
@@ -284,4 +284,21 @@ if __name__ == "__main__":
         plt.savefig("Figure/Q1修正标定图.png")
         plt.show()
         plt.close()
+
+        # 计算5项滑动平均
+        df['修正标定值_平滑/L'] = df['修正标定值/L'].rolling(window=5, center=True).mean()
+        df.to_excel('Q1_已修正标定表.xlsx', sheet_name='已修正标定表', index=False)
+
+        # 绘制修正标定图
+        plt.scatter(df['Height/mm'], df['修正标定值_平滑/L'], label='原始值', color='gray', alpha=0.6, marker='+', s=20)
+        plt.xlabel('油位高度(mm)')
+        plt.ylabel('修正标定值/L')
+        plt.title('修正标定图（带5项滑动平均）')
+        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig("Figure/Q1修正标定图_平滑.png")
+        plt.show()
+        plt.close()
+
 
