@@ -23,3 +23,12 @@ It contains the works in the first week.
 7. [已修正标定图（带5项滑动平均）](Figure/Q1修正标定图_平滑.png)
 8. 绝对误差拟合方程： y = 0.2881x^3 + -1.0258x^2 + 1.0225x + -0.2221
 ### 问题二
+1. 最优参数: α = 2.1°, β = 4.2°
+2. [罐容表](Q2罐容表标定值.csv)
+3. 误差分析报告:
+   - MAE (L): 193.8147
+   - RMSE (L): 235.5433
+   - 最大绝对误差 (L): 575.7138
+4. [罐容曲线](Figure/calibration_curve.png)
+5. [误差分析图](Figure/error_analysis.png)
+
